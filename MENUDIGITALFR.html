@@ -1,482 +1,869 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>El Secreto – Carta</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
+  <title>El Secreto – La Carte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment: '#FAF0E4',
+            'parchment-dark': '#F0E2CE',
+            burgundy: { DEFAULT: '#722F37', light: '#8B3A42', dark: '#5A252C' },
+            gold: { DEFAULT: '#C8A951', light: '#D4BC73', dark: '#A68B3C' },
+            bark: { DEFAULT: '#3C2415', light: '#5C3D2E' },
+            olive: { DEFAULT: '#556B2F', light: '#6B8539' },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Lato', 'sans-serif'],
+          }
+        }
+      }
     }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .menu-item-row { transition: background-color 0.15s ease; }
+    .menu-item-row:hover { background-color: rgba(200, 169, 81, 0.08); }
+    .dot-leader { flex: 1; border-bottom: 2px dotted #D4BC73; margin: 0 8px; min-width: 20px; opacity: 0.5; align-self: flex-end; margin-bottom: 5px; }
+    .section-card { backdrop-filter: blur(4px); }
   </style>
 </head>
 
-<body class="bg-white text-gray-800">
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold text-center text-[#556B2F] mb-6">El Secreto – Carta</h1>
+<body class="bg-parchment font-body text-bark min-h-screen">
 
-    <!-- Botones de idioma -->
-    <div class="flex justify-center gap-4 mb-6">
-      <a href="index.html" class="bg-[#D4A017] hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">Español</a>
-      <a href="MENUDIGITALEN.html" class="bg-[#D4A017] hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">English</a>
-      <button onclick="showMenu('fr')" class="bg-[#D4A017] hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">Français</button>
+  <!-- Header -->
+  <header class="bg-burgundy text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><defs><pattern id=%22p%22 width=%2220%22 height=%2220%22 patternUnits=%22userSpaceOnUse%22><circle cx=%2210%22 cy=%2210%22 r=%221.5%22 fill=%22white%22/></pattern></defs><rect fill=%22url(%23p)%22 width=%22100%22 height=%22100%22/></svg>');"></div>
+    <div class="relative max-w-3xl mx-auto px-4 py-10 text-center">
+      <p class="text-gold-light tracking-[0.3em] uppercase text-xs font-body mb-3">Bar à Tapas · Pyrénées Aragonaises</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold mb-2 tracking-wide">El Secreto</h1>
+      <div class="flex items-center justify-center gap-3 my-4">
+        <span class="block w-12 h-px bg-gold"></span>
+        <span class="text-gold text-lg">&#10038;</span>
+        <span class="block w-12 h-px bg-gold"></span>
+      </div>
+      <p class="font-display italic text-gold-light text-lg">La Carte</p>
     </div>
+  </header>
 
- <div id="menu-fr" class="menu-language">
-<div class="border rounded-lg shadow-md divide-y divide-gray-200">
+  <!-- Language Selector -->
+  <nav class="sticky top-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-gold/20 shadow-sm">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex justify-center gap-3">
+      <a href="index.html" class="bg-white/70 text-bark font-body text-sm py-2 px-5 rounded-full border border-gold/30 hover:bg-gold/10 hover:border-gold transition-all">Español</a>
+      <a href="MENUDIGITALEN.html" class="bg-white/70 text-bark font-body text-sm py-2 px-5 rounded-full border border-gold/30 hover:bg-gold/10 hover:border-gold transition-all">English</a>
+      <span class="bg-burgundy text-white font-body text-sm font-bold py-2 px-5 rounded-full shadow-md">Français</span>
+    </div>
+  </nav>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-700 mb-6 flex items-center gap-2">
-    🥗 SALADES
-  </h2>
-  <p class="mb-4 text-gray-700 italic text-sm">Toutes nos salades sont servies assaisonnées</p>
+  <!-- Menu Content -->
+  <main class="max-w-3xl mx-auto px-4 py-8 space-y-8">
 
-  <div class="overflow-x-auto">
-    <table class="min-w-full table-auto border border-gray-300 text-sm text-left">
-      <thead class="bg-green-100 text-green-800">
-        <tr>
-          <th class="px-4 py-2 border">Nom</th>
-          <th class="px-4 py-2 border">Ingrédients</th>
-          <th class="px-4 py-2 border">Assaisonnement</th>
-          <th class="px-4 py-2 border">Prix</th>
-        </tr>
-      </thead>
-      <tbody class="text-gray-800">
-        <tr>
-          <td class="px-4 py-2 border">Aragonaise</td>
-          <td class="px-4 py-2 border">Laitue, tomate, oignon, olives, thon, asperges, œuf dur, jambon</td>
-          <td class="px-4 py-2 border">Vinaigre, sel et huile d'olive</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">Du potager</td>
-          <td class="px-4 py-2 border">Tomate, olives noires, oignon rouge, œuf dur, burrata</td>
-          <td class="px-4 py-2 border">Sel, huile d'olive et basilic</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">Ventresca</td>
-          <td class="px-4 py-2 border">Tomate, olives, ventrèche de thon, anchois, boquerón, oignon nouveau</td>
-          <td class="px-4 py-2 border">Sel et huile d'olive</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">Tiède</td>
-          <td class="px-4 py-2 border">Jeunes pousses, noix, raisins secs, pomme, lard grillé, fromage de chèvre</td>
-          <td class="px-4 py-2 border">Vinaigre balsamique de Modène et miel</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">Au poulet</td>
-          <td class="px-4 py-2 border">Jeunes pousses, noix, raisins secs, pomme, poulet grillé, fromage de chèvre</td>
-          <td class="px-4 py-2 border">Vinaigre balsamique de Modène et miel</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 border">Le Secret</td>
-          <td class="px-4 py-2 border">Jeunes pousses, noix, raisins secs, tomate, œuf dur, jambon, maïs, betterave, asperges, oignon, thon, chèvre</td>
-          <td class="px-4 py-2 border">Sel, huile d'olive et vinaigre balsamique</td>
-          <td class="px-4 py-2 border">15 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- SALADES -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🥗</span> Salades
+        </h2>
+        <p class="text-sm italic text-bark-light/70 mt-1 ml-12">Toutes nos salades sont servies assaisonnées</p>
+      </div>
+      <div class="p-6 space-y-5">
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Aragonaise</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Laitue, tomate, oignon, olives, thon, asperges, œuf dur, jambon</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : vinaigre, sel et huile d'olive</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Du Potager</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Tomate, olives noires, oignon rouge, œuf dur, burrata</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : sel, huile d'olive et basilic</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Ventresca</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Tomate, olives, ventrèche de thon, anchois, boquerón, oignon nouveau</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : sel et huile d'olive</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Tiède</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Jeunes pousses, noix, raisins secs, pomme, lard grillé, fromage de chèvre</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : vinaigre balsamique de Modène et miel</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Au Poulet</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Jeunes pousses, noix, raisins secs, pomme, poulet grillé, fromage de chèvre</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : vinaigre balsamique de Modène et miel</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Le Secret</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">15 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Jeunes pousses, noix, raisins secs, tomate, œuf dur, jambon, maïs, betterave, asperges, oignon, thon, chèvre</p>
+          <p class="text-xs text-olive/70 italic mt-0.5">Assaisonnement : sel, huile d'olive et vinaigre balsamique</p>
+        </div>
+      </div>
+    </section>
 
-<section class="mb-12 mt-8">
-  <h2 class="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
-    🧀 ASSIETTES À PARTAGER
-  </h2>
-  <div class="overflow-x-auto">
-    <table class="min-w-full table-auto border border-gray-300 text-sm text-left">
-      <thead class="bg-green-100 text-green-800">
-        <tr>
-          <th class="px-4 py-2 border">Nom</th>
-          <th class="px-4 py-2 border">Prix</th>
-        </tr>
-      </thead>
-      <tbody class="text-gray-800">
-        <tr>
-          <td class="px-4 py-2 border">Jambon et fromage (pain à la tomate)</td>
-          <td class="px-4 py-2 border">20 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- ASSIETTES À PARTAGER -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-gold/10 px-6 py-4 border-b border-gold/15">
+        <h2 class="font-display text-2xl font-bold text-bark flex items-center gap-3">
+          <span class="text-3xl">🧀</span> Assiettes à Partager
+        </h2>
+      </div>
+      <div class="p-6">
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Jambon et Fromage</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">20 €</span>
+          </div>
+          <p class="text-sm text-bark-light/80 mt-1">Pain à la tomate</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- SANDWICHS (Bocadillos) -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🥖</span> Sandwichs
+        </h2>
+        <p class="text-sm italic text-bark-light/70 mt-1 ml-12">Pain baguette – taille moyenne ou grande</p>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-12 gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-bark-light/60 border-b border-gold/15 mb-1">
+          <div class="col-span-7">Sandwich</div>
+          <div class="col-span-2 text-right">Moyen</div>
+          <div class="col-span-3 text-right">Grand</div>
+        </div>
+        <div class="divide-y divide-gold/8">
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Jambon</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">5,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Jambon et fromage</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Blanc de poulet, fromage, jambon et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Blanc de poulet, fromage et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Escalope panée, laitue, tomate et mayonnaise</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Poulet, tomate, fromage, oignon, bacon et mayo</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">9,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Thon</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Steak de bœuf, fromage et poivron</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Steak de bœuf</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Steak de bœuf et fromage de chèvre</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Steak, mozzarella et oignon caramélisé</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Chorizo</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Longanisse</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Longanisse, fromage et œuf</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Chistorra</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Chistorra, fromage et œuf</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Poitrine de porc</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Omelette nature</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">5,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">6,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Omelette garnie au choix</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Omelette de pommes de terre</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Calamars frits</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Frankfurt « Le Secreto »</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Frankfurt, fromage et oignon</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Frankfurt, roquefort et oignon</div>
+            <div class="col-span-2 text-right text-bark-light/40 text-sm">—</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">5,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">6,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc, fromage et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc, roquefort et poivron rouge</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc, roquefort, laitue et tomate</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc, jambon, fromage et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet de porc, roquefort et oignon</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">5,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">6,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné, fromage et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné, roquefort et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné et œuf au plat</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné, jambon, fromage et poivron</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Filet mariné, roquefort et oignon</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7">
+              <span class="font-bold">Végétarien</span>
+              <span class="block text-xs text-bark-light/60">Laitue, tomate, thon, œuf, asperge, mayonnaise</span>
+            </div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Bacon et fromage</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">7,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7">
+              <span class="font-bold">Le Secreto</span>
+              <span class="block text-xs text-bark-light/60">Laitue, tomate, omelette de pommes de terre, jambon, fromage, mayo</span>
+            </div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">8,50€</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-700 mb-6 flex items-center gap-2">
-    🥖 SANDWICHS <span class="text-base text-gray-600">(Pain baguette – taille moyenne ou grande)</span>
-  </h2>
+    <!-- TARTINES -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🍞</span> Tartines
+        </h2>
+      </div>
+      <div class="p-6 space-y-1">
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Sobrasada, poivron piquillo, œuf et miel</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Omelette nature, guacamole et tomate fraîche</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Sobrasada et brie fondant</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">6,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Jambon serrano et tomate fraîche</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">5,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Bacon grillé et fromage de chèvre</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Avocat, bacon, tomate et confiture de tomate</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Saumon fumé, brie et tomate</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Fromage et anchois marinés</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Steak de bœuf et fromage de chèvre</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet de porc, roquefort et poivron</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Blanc de poulet, fromage, bacon et poivron</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Thon, tomate et anchois</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Jambon blanc, fromage et œuf</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Trois fromages fondus</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet mariné, fromage et poivron</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet mariné, roquefort et poivron rouge</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet mariné et fromage de chèvre</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet mariné, œuf au plat et poivron rouge</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Bacon, fromage, œuf et poivron</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Jambon serrano, tomate et guacamole</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Saumon, brie, tomate et guacamole</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Bacon, parmesan, tomate et guacamole</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Blanc de poulet, avocat, tomate et parmesan</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">9,50€</span>
+        </div>
+      </div>
+    </section>
 
-  <div class="overflow-x-auto">
-    <table class="min-w-full table-auto border border-gray-300 text-sm text-left">
-      <thead class="bg-green-100 text-green-800">
-        <tr>
-          <th class="px-4 py-2 border">Sandwich</th>
-          <th class="px-4 py-2 border">Moyen</th>
-          <th class="px-4 py-2 border">Grand</th>
-        </tr>
-      </thead>
-      <tbody class="text-gray-800">
-        <tr><td class="px-4 py-2 border">Jambon</td><td class="px-4 py-2 border">5,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Jambon et fromage</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Blanc de poulet, fromage, jambon et poivron</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Blanc de poulet, fromage et poivron</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Escalope panée, laitue, tomate et mayonnaise</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Poulet, tomate, fromage, oignon, bacon et mayonnaise</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">9,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Thon</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Steak de bœuf, fromage et poivron</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Steak de bœuf</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Steak de bœuf et fromage de chèvre</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Steak, mozzarella et oignon caramélisé</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Chorizo</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Longanisse</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Longanisse, fromage et œuf</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Chistorra</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Chistorra, fromage et œuf</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Poitrine de porc</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Omelette nature (style français)</td><td class="px-4 py-2 border">5,50 €</td><td class="px-4 py-2 border">6,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Omelette garnie au choix</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Omelette de pommes de terre</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Calamars frits</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Frankfurt « Le Secreto »</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Frankfurt, fromage et oignon</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Frankfurt, roquefort et oignon</td><td class="px-4 py-2 border">–</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc</td><td class="px-4 py-2 border">5,50 €</td><td class="px-4 py-2 border">6,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc, fromage et poivron</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc, roquefort et poivron rouge</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc, roquefort, laitue et tomate</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc, jambon, fromage et poivron</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet de porc, roquefort et oignon</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné</td><td class="px-4 py-2 border">5,50 €</td><td class="px-4 py-2 border">6,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné, fromage et poivron</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné, roquefort et poivron</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné et œuf au plat</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné, jambon, fromage et poivron</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Filet mariné, roquefort et oignon</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">VÉGÉTARIEN (laitue, tomate, thon, œuf, asperge, mayonnaise)</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">Bacon et fromage</td><td class="px-4 py-2 border">6,50 €</td><td class="px-4 py-2 border">7,50 €</td></tr>
-        <tr><td class="px-4 py-2 border">LE SECRÉTO (laitue, tomate, omelette de pommes de terre, jambon, fromage, mayo)</td><td class="px-4 py-2 border">7,50 €</td><td class="px-4 py-2 border">8,50 €</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- SANDWICHS GOURMANDS -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🥪</span> Sandwichs Gourmands
+        </h2>
+      </div>
+      <div class="p-6 space-y-1">
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Mixte <span class="text-xs text-bark-light/60">(jambon blanc et fromage)</span></span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">5,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Mixte avec œuf</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Végétarien <span class="text-xs text-bark-light/60">(laitue, tomate, thon, œuf, asperges, mayonnaise)</span></span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">7,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Végétarien avec jambon blanc et fromage</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Végétarien avec filet de poulet</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Végétarien avec saumon</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Végétarien avec roquefort et bacon</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">César <span class="text-xs text-bark-light/60">(laitue croquante, filet pané, parmesan, sauce César)</span></span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">8,50€</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- PETITES ASSIETTES -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🍟</span> Petites Assiettes à Partager
+        </h2>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-12 gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-bark-light/60 border-b border-gold/15 mb-1">
+          <div class="col-span-7">Plat</div>
+          <div class="col-span-2 text-right">Moyen</div>
+          <div class="col-span-3 text-right">Grand</div>
+        </div>
+        <div class="divide-y divide-gold/8">
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Migas aragonaises <span class="text-xs text-bark-light/60">(chapelure frite)</span></div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">5,50€</div>
+            <div class="col-span-3 text-right text-bark-light/40 text-sm">—</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Migas avec œuf</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">6,50€</div>
+            <div class="col-span-3 text-right text-bark-light/40 text-sm">—</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Pommes de terre bravas <span class="text-xs text-bark-light/60">(sauce épicée)</span></div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">10,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Lanières de calamar frit</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">9,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">12€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Seiche à l'espagnole</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">12€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">18€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Ailes de poulet</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">9,50€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Chopitos <span class="text-xs text-bark-light/60">(petits calamars frits)</span></div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">12€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">16€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Chipirons grillés <span class="text-xs text-bark-light/60">(bébés calamars)</span></div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">18€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7 font-medium">Tendres de poulet pané</div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">7,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">10€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-2.5 rounded">
+            <div class="col-span-7">
+              <span class="font-medium">Cassolette de saucisses</span>
+              <span class="block text-xs text-bark-light/60">Longaniza aragonaise, chistorra &amp; chorizo</span>
+            </div>
+            <div class="col-span-2 text-right text-burgundy font-semibold">9,50€</div>
+            <div class="col-span-3 text-right text-burgundy font-semibold">12€</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">🍞 TARTINES </h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-green-100 text-green-900">
-        <tr>
-          <th class="px-4 py-2">Tartine</th>
-          <th class="px-4 py-2 text-right">Prix</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="px-4 py-2">Sobrasada, poivron piquillo, œuf et miel </td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Omelette nature, guacamole et tomate fraîche</td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Sobrasada et brie fondant </td><td class="px-4 py-2 text-right">6,50€</td></tr>
-        <tr><td class="px-4 py-2">Jambon serrano et tomate fraîche</td><td class="px-4 py-2 text-right">5,50€</td></tr>
-        <tr><td class="px-4 py-2">Bacon grillé et fromage de chèvre </td><td class="px-4 py-2 text-right">7,50€</td></tr>
-        <tr><td class="px-4 py-2">Avocat, bacon, tomate et confiture de tomate</td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Saumon fumé, brie et tomate</td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Fromage et anchois marinés</td><td class="px-4 py-2 text-right">7,50€</td></tr>
-        <tr><td class="px-4 py-2">Steak de bœuf et fromage de chèvre</td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Filet de porc, roquefort et poivron</td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Blanc de poulet, fromage, bacon et poivron </td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Thon, tomate et anchois </td><td class="px-4 py-2 text-right">7,50€</td></tr>
-        <tr><td class="px-4 py-2">Jambon blanc,fromage et œuf </td><td class="px-4 py-2 text-right">7,50€</td></tr>
-        <tr><td class="px-4 py-2">Trois fromages fondus </td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Filet mariné, fromage et poivron </td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Filet mariné, roquefort et poivron rouge</td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Filet mariné et fromage de chèvre</td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Filet mariné, œuf au plat et poivron rouge </td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Bacon, fromage, œuf et poivron </td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Jambon serrano, tomate et guacamole</td><td class="px-4 py-2 text-right">8,50€</td></tr>
-        <tr><td class="px-4 py-2">Saumon, brie, tomate et guacamole</td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Bacon, parmesan, tomate et guacamole </td><td class="px-4 py-2 text-right">9,50€</td></tr>
-        <tr><td class="px-4 py-2">Blanc de poulet, avocat, tomate et parmesan </td><td class="px-4 py-2 text-right">9,50€</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- BURGERS -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-burgundy/10 px-6 py-4 border-b border-burgundy/15">
+        <h2 class="font-display text-2xl font-bold text-burgundy flex items-center gap-3">
+          <span class="text-3xl">🍔</span> Burgers Gourmets
+        </h2>
+        <p class="text-sm italic text-bark-light/70 mt-1 ml-12">Servies avec frites maison</p>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Complète</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">8,50€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, oignon, fromage et œuf</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Secreto</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">9,50€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, œuf et sauce spéciale Secreto</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Roquefort</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">9,50€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, œuf, oignon, bacon et fromage roquefort</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Chèvre</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">9,50€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, œuf, oignon, bacon et fromage de chèvre</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Black Angus</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">10€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, oignon, œuf, fromage et bacon</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Black Angus au fromage de chèvre</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">12€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, oignon, fromage de chèvre, œuf et bacon</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Black Angus aux oignons caramélisés</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">12€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, fromage, œuf, bacon et oignons caramélisés</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Guacamole</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">10€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Laitue, tomate, œuf, fromage, bacon et guacamole</p>
+        </div>
+        <div class="menu-item-row rounded-lg p-3 -mx-3">
+          <div class="flex items-baseline">
+            <span class="font-display font-bold text-burgundy text-lg">Filet de poulet au guacamole</span>
+            <span class="dot-leader"></span>
+            <span class="font-bold text-burgundy text-lg">10€</span>
+          </div>
+          <p class="text-sm text-bark-light/70 mt-0.5">Filet de poulet, laitue, tomate, œuf, fromage et guacamole</p>
+        </div>
+      </div>
+    </section>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">🥪 SANDWICHS GOURMANDS</h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-green-100 text-green-900">
-        <tr>
-          <th class="px-4 py-2">Sandwich</th>
-          <th class="px-4 py-2 text-right">Prix</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="px-4 py-2">Mixte (jambon blanc et fromage)</td>
-          <td class="px-4 py-2 text-right">5,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Mixte avec œuf</td>
-          <td class="px-4 py-2 text-right">7,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            VÉGÉTARIEN <br>
-            <span class="text-xs text-gray-600">(laitue, tomate, thon, œuf, asperges, mayonnaise)</span>
-          </td>
-          <td class="px-4 py-2 text-right">7,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Végétarien avec jambon blanc et fromage</td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Végétarien avec filet de poulet</td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Végétarien avec saumon</td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Végétarien avec roquefort et bacon</td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            CÉSAR <br>
-            <span class="text-xs text-gray-600">(laitue croquante, filet pané, parmesan, sauce César)</span>
-          </td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- ASSIETTES COMPOSÉES -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/10 overflow-hidden">
+      <div class="bg-olive/10 px-6 py-4 border-b border-olive/15">
+        <h2 class="font-display text-2xl font-bold text-olive flex items-center gap-3">
+          <span class="text-3xl">🍽</span> Assiettes Composées
+        </h2>
+        <p class="text-sm italic text-bark-light/70 mt-1 ml-12">Servies avec œufs, tartine de tomate, poivron vert et pommes de terre</p>
+      </div>
+      <div class="p-6 space-y-1">
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet de porc</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Saucisse aragonaise (longaniza)</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Chorizo</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Steak de bœuf</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">14€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Seiche grillée</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">14€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Poitrine de porc grillée</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Brochettes de porc marinées</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Burger complet</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Filet de poulet grillé</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Escalope de poulet panée</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">13€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">San Jacobo <span class="text-xs text-bark-light/60">(cordon bleu jambon-fromage)</span></span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">14€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Escalope de porc panée</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Boulettes de viande</span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">12€</span>
+        </div>
+        <div class="menu-item-row flex items-baseline rounded-lg px-3 py-2.5 -mx-3">
+          <span class="font-medium">Chipirons grillés avec salade <span class="text-xs text-bark-light/60">(sans pommes de terre)</span></span>
+          <span class="dot-leader"></span>
+          <span class="font-bold text-burgundy">14€</span>
+        </div>
+      </div>
+    </section>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">🍽️ PETITES ASSIETTES À PARTAGER</h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-green-100 text-green-900">
-        <tr>
-          <th class="px-4 py-2">Plat</th>
-          <th class="px-4 py-2 text-right">Moyen</th>
-          <th class="px-4 py-2 text-right">Grand</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="px-4 py-2">Migas aragonaises (chapelure frite traditionnelle)</td>
-          <td class="px-4 py-2 text-right">5,50 €</td>
-          <td class="px-4 py-2 text-right">—</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Migas avec œuf</td>
-          <td class="px-4 py-2 text-right">6,50 €</td>
-          <td class="px-4 py-2 text-right">—</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Pommes de terre bravas (sauce épicée)</td>
-          <td class="px-4 py-2 text-right">7,50 €</td>
-          <td class="px-4 py-2 text-right">10,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Lanières de calamar frit</td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-          <td class="px-4 py-2 text-right">12 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Seiche à l’espagnole</td>
-          <td class="px-4 py-2 text-right">12 €</td>
-          <td class="px-4 py-2 text-right">18 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Ailes de poulet</td>
-          <td class="px-4 py-2 text-right">7,50 €</td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Chopitos (petits calamars frits)</td>
-          <td class="px-4 py-2 text-right">12 €</td>
-          <td class="px-4 py-2 text-right">16 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Chipirons grillés (bébés calamars)</td>
-          <td class="px-4 py-2 text-right">14 €</td>
-          <td class="px-4 py-2 text-right">18 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">Tendres de poulet pané</td>
-          <td class="px-4 py-2 text-right">7,50 €</td>
-          <td class="px-4 py-2 text-right">10 €</td>
-          <tr>
-          <td class="px-4 py-2">Cassolette de saucisses (longaniza aragonaise, chistorra & chorizo)</td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-          <td class="px-4 py-2 text-right">12 €</td>
-        </tr>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <!-- SPÉCIALITÉS DE LA MAISON -->
+    <section class="section-card bg-white/60 rounded-2xl shadow-md border border-gold/20 overflow-hidden ring-1 ring-gold/10">
+      <div class="bg-gradient-to-r from-gold/20 to-gold/10 px-6 py-5 border-b border-gold/20">
+        <h2 class="font-display text-2xl font-bold text-bark flex items-center gap-3">
+          <span class="text-3xl">⭐</span> Spécialités de la Maison
+        </h2>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-12 gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-bark-light/60 border-b border-gold/15 mb-1">
+          <div class="col-span-7">Plat</div>
+          <div class="col-span-2 text-right">Moyen</div>
+          <div class="col-span-3 text-right">Grand</div>
+        </div>
+        <div class="divide-y divide-gold/8">
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Cassolette de fromage provolone</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-bark-light/40 text-sm">—</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés à la saucisse aragonaise et poivrons</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés au boudin noir</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés à la chistorra et poivrons</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés au jambon et foie</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés à la charcuterie et poivron rouge</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Œufs cassés à la ratatouille et civelles</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-burgundy font-bold">19€</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Magras à la tomate</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">12€</div>
+            <div class="col-span-3 text-right text-bark-light/40 text-sm">—</div>
+          </div>
+          <div class="menu-item-row grid grid-cols-12 gap-2 px-3 py-3 rounded">
+            <div class="col-span-7 font-display font-semibold">Magras à la tomate avec œuf</div>
+            <div class="col-span-2 text-right text-burgundy font-bold">14€</div>
+            <div class="col-span-3 text-right text-bark-light/40 text-sm">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+  </main>
 
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">🍔 BURGERS GOURMETS <span class="text-sm font-normal text-gray-600">(Servies avec frites maison)</span></h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-green-100 text-green-900">
-        <tr>
-          <th class="px-4 py-2">Burger</th>
-          <th class="px-4 py-2 text-right">Prix</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="px-4 py-2">
-            Complète<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, oignon, fromage et œuf</span>
-          </td>
-          <td class="px-4 py-2 text-right">8,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Secreto<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, œuf et sauce spéciale Secreto</span>
-          </td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Roquefort<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, œuf, oignon, bacon et fromage roquefort</span>
-          </td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Chèvre<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, œuf, oignon, bacon et fromage de chèvre</span>
-          </td>
-          <td class="px-4 py-2 text-right">9,50 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Black Angus<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, oignon, œuf, fromage et bacon</span>
-          </td>
-          <td class="px-4 py-2 text-right">10 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Black Angus au fromage de chèvre<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, oignon, fromage de chèvre, œuf et bacon</span>
-          </td>
-          <td class="px-4 py-2 text-right">12 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Black Angus aux oignons caramélisés<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, fromage, œuf, bacon et oignons caramélisés</span>
-          </td>
-          <td class="px-4 py-2 text-right">12 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Guacamole<br>
-            <span class="text-xs text-gray-600">Laitue, tomate, œuf, fromage, bacon et guacamole</span>
-          </td>
-          <td class="px-4 py-2 text-right">10 €</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2">
-            Filet de poulet au guacamole<br>
-            <span class="text-xs text-gray-600">Filet de poulet, laitue, tomate, œuf, fromage et guacamole</span>
-          </td>
-          <td class="px-4 py-2 text-right">10 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+  <!-- Footer -->
+  <footer class="bg-burgundy-dark text-white/70 text-center py-8 mt-12">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="font-display text-2xl text-white mb-1">El Secreto</p>
+      <p class="text-sm text-gold-light/80">Bar à Tapas · Pyrénées Aragonaises</p>
+      <div class="flex items-center justify-center gap-3 my-3">
+        <span class="block w-8 h-px bg-gold/40"></span>
+        <span class="text-gold/60 text-xs">&#10038;</span>
+        <span class="block w-8 h-px bg-gold/40"></span>
+      </div>
+      <p class="text-xs text-white/40">TVA incluse dans tous les prix</p>
+    </div>
+  </footer>
 
-
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">
-    🍽️ ASSIETTES COMPOSÉES 
-    <span class="text-sm font-normal text-gray-600">(Servies avec œufs, tartine de tomate, poivron vert et pommes de terre)</span>
-  </h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-green-100 text-green-900">
-        <tr>
-          <th class="px-4 py-2">Plat</th>
-          <th class="px-4 py-2 text-right">Prix</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="px-4 py-2">Filet de porc</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Saucisse aragonaise (longaniza)</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Chorizo</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Steak de bœuf</td><td class="px-4 py-2 text-right">14 €</td></tr>
-        <tr><td class="px-4 py-2">Seiche grillée</td><td class="px-4 py-2 text-right">14 €</td></tr>
-        <tr><td class="px-4 py-2">Poitrine de porc grillée</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Brochettes de porc marinées</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Burger complet</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Filet de poulet grillé</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Escalope de poulet panée</td><td class="px-4 py-2 text-right">13 €</td></tr>
-        <tr><td class="px-4 py-2">San Jacobo (cordon bleu jambon-fromage)</td><td class="px-4 py-2 text-right">14 €</td></tr>
-        <tr><td class="px-4 py-2">Escalope de porc panée</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr><td class="px-4 py-2">Boulettes de viande</td><td class="px-4 py-2 text-right">12 €</td></tr>
-        <tr>
-          <td class="px-4 py-2">
-            Chipirons grillés avec salade <br>
-            <span class="text-xs text-gray-600">(sans pommes de terre)</span>
-          </td>
-          <td class="px-4 py-2 text-right">14 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold text-yellow-800 mb-4 flex items-center gap-2">
-    ⭐ SPÉCIALITÉS DE LA MAISON
-    <span class="text-sm font-normal text-gray-600">(Plat – Moyenne / Grande portion)</span>
-  </h2>
-  <div class="overflow-x-auto">
-    <table class="table-auto w-full border border-gray-300 text-left text-sm">
-      <thead class="bg-yellow-100 text-yellow-900">
-        <tr>
-          <th class="px-4 py-2">Plat</th>
-          <th class="px-4 py-2 text-right">Moyenne</th>
-          <th class="px-4 py-2 text-right">Grande</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="px-4 py-2">Cassolette de fromage provolone</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">—</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés à la saucisse aragonaise et aux poivrons</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés à la boudin noir</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés à la chistorra et aux poivrons</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés au jambon et foie</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés à la charcuterie séchée et poivron rouge</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Œufs cassés à la ratatouille et aux civelles</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">19,00 €</td></tr>
-        <tr><td class="px-4 py-2">Magras à la tomate (ragoût de porc)</td><td class="px-4 py-2 text-right">12,00 €</td><td class="px-4 py-2 text-right">—</td></tr>
-        <tr><td class="px-4 py-2">Magras à la tomate avec œuf</td><td class="px-4 py-2 text-right">14,00 €</td><td class="px-4 py-2 text-right">—</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
+</body>
+</html>
